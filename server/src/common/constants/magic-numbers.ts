@@ -3,7 +3,8 @@ export const defaultPort = 3000;
 // auth
 export const minLengthPasswordValidation = 8;
 export const minLengthUsernameValidation = 4;
-export const passwordMatchPattern = /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{8,}$/;
+// export const passwordMatchPattern = /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{8,}$/;
+export const passwordMatchPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 export const emailTokenExpiresIn = '1h';
 
 // crypto

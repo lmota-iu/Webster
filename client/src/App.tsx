@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Studio from './pages/Studio/Studio';
 import SignIn from '~/pages/Auth/SignIn';
 import SignUp from '~/pages/Auth/SignUp';
@@ -38,7 +38,8 @@ function App() {
     <Loader isFullScreen />
   ) : (
     <Routes>
-      <Route path="/" element={<Studio />} />
+      <Route path="/" element={isLoggedIn ? <Studio /> : <Navigate to="/auth/sign-in" />} />
+      {/* <Route path="/" element={<Studio /> } /> */}
       <Route element={<AuthLayout />}>
         <Route path="/auth/sign-in" element={<SignIn />} />
         <Route path="/auth/sign-up" element={<SignUp />} />

@@ -14,7 +14,8 @@ export const TOOLBAR_TABS = [
   { icon: HiOutlinePhotograph, title: 'Images' },
   { icon: HiOutlineCloudUpload, title: 'Upload' },
   { icon: HiOutlineTranslate, title: 'Text' },
-  { icon: HiOutlineCube, title: 'Shapes' },
+  // { icon: HiOutlineCube, title: 'Shapes' },
+  { icon: HiOutlineCube, title: 'Draw' },
   { icon: HiOutlineInformationCircle, title: 'Hotkeys' },
 ];
 
