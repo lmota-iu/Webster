@@ -4,9 +4,9 @@ import CanvasCreateForm from './CanvasCreateForm';
 
 const CanvasCreate = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  console.log('canvas create');
   return (
-    <Box sx={{ w: '100%' }}>
+    <Box className="canvas-create" sx={{ w: '100%' }}>
       <Button variant="ghost" colorScheme="pink" onClick={onOpen} sx={{ w: '100%' }}>
         Create a canvas
       </Button>

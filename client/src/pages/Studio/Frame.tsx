@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Konva from 'konva';
 import { Box } from '@chakra-ui/react';
-import { Stage, Layer, Transformer } from 'react-konva';
+import { Stage, Layer, Transformer, Rect as KonvaRect } from 'react-konva';
+import useImage from 'use-image';
+import { setSize } from '~/store/slices/frame-slice';
 import { useAppSelector } from '~/hooks/use-app-selector';
 import TextObject from './objects/TextObject/TextObject';
 import { KonvaEventObject } from 'konva/lib/Node';
@@ -14,16 +17,22 @@ import useObjectSelect from '~/hooks/use-object-select';
 import { loadGoogleFontsDefaultVariants } from '~/utils/load-google-fonts-default-variants';
 import useHotkeySetup from '~/hooks/use-hotkey-setup';
 import useStageResize from '~/hooks/use-stage-resize';
+import grid from '~/assets/icons/select.svg';
+
+const gridImagePath = '/icons/grid.svg';
 
 type IProps = {
   stageRef: React.RefObject<Konva.Stage> | null;
 };
 
 const Frame = ({ stageRef }: IProps) => {
+  const dispatch = useDispatch();
   const { stageObjects, resetAll, replaceAll } = useStageObject();
   const { transformer: imageTransformer, onTransformerEnd: onImageTransformerEnd } = useTransformer({ stageRef });
   const { transformer: textTransformer, onTransformerEnd: onTextTransformerEnd } = useTransformer({ stageRef });
   const { transformer: multiTransformer, onTransformerEnd: onMultiTransformerEnd } = useTransformer({ stageRef });
+
+  const [image] = useImage(gridImagePath);
 
   const transformers = { imageTransformer, textTransformer, multiTransformer };
 
@@ -34,6 +43,21 @@ const Frame = ({ stageRef }: IProps) => {
   const { width, height, scale, stage } = useAppSelector((state) => state.frame);
   const { boxWidth, boxHeight, handleZoom, handleDragMoveStage } = useStageResize({ stageRef });
 
+  // resize stage
+  useEffect(() => {
+    const parentElem: HTMLElement | null = document.querySelector('#drawing-board');
+    if (parentElem) {
+      console.log('resize', parentElem.offsetWidth, parentElem.offsetHeight);
+      dispatch(
+        setSize({
+          width: parentElem.offsetWidth,
+          height: parentElem.offsetHeight,
+        }),
+      );
+    }
+  }, []);
+
+  // load fonts
   useEffect(() => {
     const fontsToLoad = stageObjects
       .filter((obj) => obj.data.type === StageObjectType.TEXT && obj.data.webFont)
@@ -44,6 +68,7 @@ const Frame = ({ stageRef }: IProps) => {
     resetObjectSelect();
   }, []);
 
+  // change stage
   useEffect(() => {
     const content = stage.content;
     resetObjectSelect();
@@ -58,7 +83,17 @@ const Frame = ({ stageRef }: IProps) => {
     replaceAll(content as StageObject[]);
   }, [stage.id, stage.content]);
 
+  const checkSelect = (e: KonvaEventObject<MouseEvent> | KonvaEventObject<TouchEvent>) => {
+    console.log('check [Se]lect');
+    const clickedOnEmpty = e.target === e.target.getStage();
+    if (!clickedOnEmpty) {
+      return;
+    }
+  };
+
   const checkDeselect = (e: KonvaEventObject<MouseEvent> | KonvaEventObject<TouchEvent>) => {
+    return;
+    console.log('check [Dese]lect');
     const clickedOnEmpty = e.target === e.target.getStage();
     if (clickedOnEmpty) {
       resetObjectSelect();
@@ -92,7 +127,7 @@ const Frame = ({ stageRef }: IProps) => {
   };
 
   return (
-    <Box overflow="hidden" maxW={boxWidth} maxH={boxHeight}>
+    <Box overflow="hidden" maxW={width} maxH={height}>
       <Stage
         width={width * scale}
         height={height * scale}
@@ -102,10 +137,20 @@ const Frame = ({ stageRef }: IProps) => {
         draggable={true}
         ref={stageRef}
         onMouseDown={checkDeselect}
+        onMouseUp={checkSelect}
         onTouchStart={checkDeselect}
         onWheel={handleZoom}
         onDragMove={handleDragMoveStage}
       >
+        <Layer>
+          <KonvaRect
+            width={width * scale}
+            height={height * scale}
+            fillPatternImage={image}
+            fillPatternRepeat={'repeat'}
+            fillPatternScale={{ x: 0.2, y: 0.2 }}
+          />
+        </Layer>
         <Layer>
           {sortStageObject().map((obj) => (
             <React.Fragment key={obj.id}>{renderStageObject(obj)}</React.Fragment>

@@ -1,10 +1,10 @@
 import { FilterName, StageObjectData, StageObjectType } from '~/types/stage-object';
 
 export const DEFAULT_STAGE_OBJECT = {
-  width: 100,
-  height: 100,
-  x: 50,
-  y: 50,
+  width: 0,
+  height: 0,
+  x: 0,
+  y: 0,
   draggable: true,
   z_index: 0,
   updatedAt: Date.now(),

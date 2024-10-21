@@ -42,3 +42,8 @@ upload
 #npm files
 
 package-lock.json
+
+
+# docker mounts
+/db
+

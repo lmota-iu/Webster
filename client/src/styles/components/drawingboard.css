@@ -1,0 +1,6 @@
+#drawing-board {
+  border: red;
+  /* cursor: url("/icons/select.svg  width='32' height='32'") 12 12, auto!important; */
+  cursor: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 3L12 11L17 6L22 21H2L8 3Z' /%3E%3C/svg%3E width='32' height='32'")
+    12 1 !important;
+}

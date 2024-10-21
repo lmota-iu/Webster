@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 import Konva from 'konva';
 import Frame from './Frame';
 import Navbar from './Navbar/Navbar';
-import Toolbar from './Toolbar';
+import Toolbar from './Toolbar/Toolbar';
 import EditingToolbar from './EditingToolbar/EditingToolbar';
+import DrawingToolBar from './DrawingToolBar/DrawingToolBar';
 import { NAVBAR_HEIGHT, EDITING_TOOLBAR_HEIGHT, FRAME_CONTAINER_PADDING } from '~/consts/components';
 
 const Studio = () => {
@@ -36,11 +37,13 @@ const Studio = () => {
         <Box flexGrow="1">
           <EditingToolbar />
           <Center
+            id="drawing-board"
             h={`calc(100vh - ${navbarHeight}px - ${editingToolbarHeight}px)`}
             bgColor="gray.200"
             padding={`${FRAME_CONTAINER_PADDING}px`}
           >
             <Frame stageRef={stageRef} />
+            <DrawingToolBar />
           </Center>
         </Box>
       </Flex>
