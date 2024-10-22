@@ -28,11 +28,9 @@ const CADToolbar = () => {
 
   function addBorderRadius(iSection: number, iBtn: number): string {
     if (iSection === 0 && iBtn === 0) {
-      console.log(iSection, iBtn);
       return '5 0 0 5';
     }
     if (iSection === 0 && iBtn === 1) {
-      console.log(iSection, iBtn);
       return '0 5 5 0';
     }
     return '0';

@@ -24,7 +24,7 @@ const Toolbar = ({ stageRef }: Props) => {
 
   return (
     <Flex
-      h="100%"
+      h={`calc(100vh - ${NAVBAR_HEIGHT}px)`}
       borderRight="2px"
       borderColor="gray.200"
       position={'absolute'}

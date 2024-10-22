@@ -25,7 +25,7 @@ type IProps = {
 const Frame = ({ stageRef }: IProps) => {
   const dispatch = useDispatch();
 
-  const { stageObjects, createOne, resetAll, replaceAll } = useStageObject();
+  const { stageObjects, resetAll, replaceAll } = useStageObject();
   const { transformer: imageTransformer, onTransformerEnd: onImageTransformerEnd } = useTransformer({ stageRef });
   const { transformer: textTransformer, onTransformerEnd: onTextTransformerEnd } = useTransformer({ stageRef });
   const { transformer: multiTransformer, onTransformerEnd: onMultiTransformerEnd } = useTransformer({ stageRef });
@@ -37,8 +37,8 @@ const Frame = ({ stageRef }: IProps) => {
   useHotkeySetup(transformers);
 
   const { width, height, scale, stage } = useAppSelector((state) => state.frame);
-  // const { boxWidth, boxHeight, handleZoom, handleDragMoveStage } = useStageResize({ stageRef });
-  const { handleZoom, handleDragMoveStage } = useStageResize({ stageRef });
+  const { boxWidth, boxHeight, handleZoom, handleDragMoveStage } = useStageResize({ stageRef });
+  // const { handleZoom, handleDragMoveStage } = useStageResize({ stageRef });
 
   useEffect(() => {
     const fontsToLoad = stageObjects
@@ -66,7 +66,7 @@ const Frame = ({ stageRef }: IProps) => {
 
   // resize stage
   useEffect(() => {
-    const parentElem: HTMLElement | null = document.querySelector('#frame-container');
+    const parentElem: HTMLElement | null = document.querySelector('#frame-box');
     if (parentElem) {
       console.log('resize', parentElem.offsetWidth, parentElem.offsetHeight);
       dispatch(
@@ -76,7 +76,7 @@ const Frame = ({ stageRef }: IProps) => {
         }),
       );
     }
-  }, []);
+  }, [scale]);
 
   const checkDeselect = (e: KonvaEventObject<MouseEvent> | KonvaEventObject<TouchEvent>) => {
     const clickedOnEmpty = e.target === e.target.getStage();
@@ -112,7 +112,7 @@ const Frame = ({ stageRef }: IProps) => {
   };
 
   return (
-    <Box overflow="hidden" maxW={width} maxH={height}>
+    <Box className="box-frame" overflow="hidden" maxW={boxWidth * 2} maxH={boxHeight * 2}>
       <Stage
         width={width * scale}
         height={height * scale}

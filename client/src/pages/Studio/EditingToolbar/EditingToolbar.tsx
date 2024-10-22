@@ -1,4 +1,4 @@
-import { HStack, Icon, IconButton, Spacer, Tooltip } from '@chakra-ui/react';
+import { HStack, Icon, IconButton, Tooltip } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { HiOutlineRefresh, HiOutlineReply } from 'react-icons/hi';
@@ -60,7 +60,14 @@ const EditingToolbar = () => {
   };
 
   return (
-    <HStack h={`${EDITING_TOOLBAR_HEIGHT}px`} id="editing_toolbar" spacing={2} sx={{ px: 4 }} bgColor="white">
+    <HStack
+      h={`${EDITING_TOOLBAR_HEIGHT}px`}
+      id="editing_toolbar"
+      spacing={2}
+      sx={{ px: 4 }}
+      bgColor="white"
+      borderBottom={'1px #ccc solid'}
+    >
       <Tooltip hasArrow label="Undo Ctrl + Z" placement="bottom" openDelay={500}>
         <IconButton aria-label="Undo" icon={<Icon as={HiOutlineReply} boxSize={5} />} onClick={() => goBack()} />
       </Tooltip>
@@ -81,7 +88,7 @@ const EditingToolbar = () => {
       {renderEditing()}
       {isLoggedIn && (
         <>
-          <Spacer />
+          {/* <Spacer /> */}
           <CanvasContentSave />
         </>
       )}
