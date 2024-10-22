@@ -65,6 +65,7 @@ export class AuthService {
 
     return {
       accessToken,
+      user: UserResponseDto.mapFrom(user),
     };
   }
 

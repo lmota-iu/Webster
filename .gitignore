@@ -42,3 +42,7 @@ upload
 #npm files
 
 package-lock.json
+
+
+# DB files
+db/

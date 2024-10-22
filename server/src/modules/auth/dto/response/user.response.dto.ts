@@ -1,9 +1,7 @@
 import { User } from '@prisma/client';
 import { plainToClass, Expose } from 'class-transformer';
 
-export class UserResponseDto implements Omit<User, 'password'> {
-  @Expose()
-  id: string;
+export class UserResponseDto implements Omit<User, 'id' | 'password'> {
   @Expose()
   email: string;
   @Expose()
@@ -16,3 +14,9 @@ export class UserResponseDto implements Omit<User, 'password'> {
     });
   }
 }
+
+/*
+--- Don't expose the id in the response ---
+@Expose()
+id: string;
+*/
