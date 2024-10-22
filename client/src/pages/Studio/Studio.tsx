@@ -1,7 +1,7 @@
 import { Flex, Center, Box } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import Konva from 'konva';
-import Frame from './Frame';
+import Frame from './Frame/Frame';
 import Navbar from './Navbar/Navbar';
 import Toolbar from './Toolbar';
 import EditingToolbar from './EditingToolbar/EditingToolbar';
@@ -44,7 +44,8 @@ const Studio = () => {
           >
             <Frame stageRef={stageRef} />
           </Center>
-          <CADToolbar stageRef={stageRef} />
+          <CADToolbar />
+          {/* <CADToolbar stageRef={stageRef} /> */}
         </Box>
       </Flex>
     </Box>

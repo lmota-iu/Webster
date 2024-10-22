@@ -3,10 +3,10 @@ import Konva from 'konva';
 import { Box } from '@chakra-ui/react';
 import { Stage, Layer, Transformer } from 'react-konva';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import TextObject from './objects/TextObject/TextObject';
+import TextObject from '../objects/TextObject/TextObject';
 import { KonvaEventObject } from 'konva/lib/Node';
-import ImageObject from './objects/ImageObject/ImageObject';
-import ShapeObject from './objects/ShapeObject/ShapeObject';
+import ImageObject from '../objects/ImageObject/ImageObject';
+import ShapeObject from '../objects/ShapeObject/ShapeObject';
 import useStageObject from '~/hooks/use-stage-object';
 import { StageObject, StageObjectType, StageTextObjectData } from '~/types/stage-object';
 import useTransformer from '~/hooks/use-transformer';
@@ -16,6 +16,7 @@ import useHotkeySetup from '~/hooks/use-hotkey-setup';
 import useStageResize from '~/hooks/use-stage-resize';
 import { setSize } from '~/store/slices/frame-slice';
 import { useDispatch } from 'react-redux';
+import Grid from './Grid';
 
 type IProps = {
   stageRef: React.RefObject<Konva.Stage> | null;
@@ -24,7 +25,7 @@ type IProps = {
 const Frame = ({ stageRef }: IProps) => {
   const dispatch = useDispatch();
 
-  const { stageObjects, resetAll, replaceAll } = useStageObject();
+  const { stageObjects, createOne, resetAll, replaceAll } = useStageObject();
   const { transformer: imageTransformer, onTransformerEnd: onImageTransformerEnd } = useTransformer({ stageRef });
   const { transformer: textTransformer, onTransformerEnd: onTextTransformerEnd } = useTransformer({ stageRef });
   const { transformer: multiTransformer, onTransformerEnd: onMultiTransformerEnd } = useTransformer({ stageRef });
@@ -125,6 +126,7 @@ const Frame = ({ stageRef }: IProps) => {
         onWheel={handleZoom}
         onDragMove={handleDragMoveStage}
       >
+        <Grid width={width} height={height} scale={scale} />
         <Layer>
           {sortStageObject().map((obj) => (
             <React.Fragment key={obj.id}>{renderStageObject(obj)}</React.Fragment>
