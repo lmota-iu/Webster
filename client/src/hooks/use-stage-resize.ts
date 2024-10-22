@@ -81,7 +81,7 @@ const useStageResize = ({ stageRef }: Props) => {
       direction = -direction;
     }
 
-    const scaleBy = 1.01;
+    const scaleBy = 1.02;
     dispatch(setScale({ scale: direction > 0 ? scale * scaleBy : scale / scaleBy }));
     setStageCoodrs();
   };
