@@ -8,6 +8,7 @@ import selectedObjectReducer from './slices/selected-objects-slice';
 import authReducer from './slices/auth-slice';
 import copiedObjectReducer from './slices/copied-objects-slice';
 import { apiSlice } from './api/api-slice';
+import cadToolsReducer from './slices/cad-tools-slice';
 
 const persistConfig = {
   key: 'root',
@@ -25,6 +26,7 @@ const persistedReducer = persistReducer(
     auth: authReducer,
     fontList: fontListReducer,
     copied: copiedObjectReducer,
+    cadTools: cadToolsReducer,
   }),
 );
 

@@ -1,5 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
-
+// imagem urbana color: #6298ae
 const theme = extendTheme({
   fonts: {
     heading: `"Inter", sans-serif`,
@@ -8,7 +8,7 @@ const theme = extendTheme({
   semanticTokens: {
     colors: {
       primary: {
-        default: 'pink.500',
+        default: '#6298ae',
       },
     },
   },

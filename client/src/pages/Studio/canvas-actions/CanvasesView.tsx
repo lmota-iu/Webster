@@ -41,7 +41,7 @@ const CanvasesView = () => {
 
   return (
     <Box sx={{ w: '100%' }}>
-      <Button variant="ghost" colorScheme="pink" onClick={onOpen} sx={{ w: '100%' }}>
+      <Button variant="ghost" colorScheme="teal" onClick={onOpen} sx={{ w: '100%' }}>
         View all canvases
       </Button>
 

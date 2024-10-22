@@ -65,7 +65,7 @@ function SignIn() {
               <Heading fontSize="25px">Log in to your account</Heading>
               <HStack spacing="1" justify="center">
                 <Text color="muted">Don&apos;t have an account?</Text>
-                <Link as={RouterLink} color={'pink.500'} to="/auth/sign-up">
+                <Link as={RouterLink} color={'primary'} to="/auth/sign-up">
                   Sign Up
                 </Link>
               </HStack>
@@ -83,7 +83,7 @@ function SignIn() {
               <Stack spacing="5">
                 <FormControl>
                   <FormLabel htmlFor="email">Email</FormLabel>
-                  <Input id="email" type="email" focusBorderColor="pink.500" {...register('email')} />
+                  <Input id="email" type="email" focusBorderColor="primary" {...register('email')} />
                 </FormControl>
                 <FormControl>
                   <FormLabel htmlFor="password">Password</FormLabel>
@@ -101,7 +101,7 @@ function SignIn() {
                       id="password"
                       type={isOpen ? 'text' : 'password'}
                       autoComplete="current-password"
-                      focusBorderColor="pink.500"
+                      focusBorderColor="primary"
                       required
                       {...register('password')}
                     />
@@ -109,7 +109,7 @@ function SignIn() {
                 </FormControl>
               </Stack>
               <Stack spacing="6">
-                <Button type="submit" colorScheme="pink" isLoading={isLoading}>
+                <Button type="submit" colorScheme="teal" isLoading={isLoading}>
                   {'Sign in'}
                 </Button>
               </Stack>

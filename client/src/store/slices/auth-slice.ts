@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IUser } from '~/types/auth';
 
 type IAuthState = {
   isLoggedIn: boolean;
   token: string | null;
+  user: IUser | null;
 };
 
 const initialState: IAuthState = {
   isLoggedIn: false,
   token: null,
+  user: null,
 };
 
 const authSlice = createSlice({
@@ -18,6 +21,7 @@ const authSlice = createSlice({
       const { accessToken } = payload;
       state.token = accessToken;
       state.isLoggedIn = true;
+      state.user = payload.user;
     },
     // setToken(state, { payload }) {
     //   const { token } = payload;
@@ -26,6 +30,7 @@ const authSlice = createSlice({
     logout(state) {
       state.isLoggedIn = initialState.isLoggedIn;
       state.token = null;
+      state.user = null;
     },
   },
 });

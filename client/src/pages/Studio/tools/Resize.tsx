@@ -166,7 +166,7 @@ const Resize = () => {
           type="number"
           width="100px"
           value={width}
-          focusBorderColor="pink.500"
+          focusBorderColor="teal.500"
           onChange={handleChangeWidth}
           onBlur={handleBlurWidth}
         />
@@ -181,7 +181,7 @@ const Resize = () => {
           type="number"
           width="100px"
           value={height}
-          focusBorderColor="pink.500"
+          focusBorderColor="teal.500"
           onChange={handleChangeHeight}
           onBlur={handleBlurHeight}
         />

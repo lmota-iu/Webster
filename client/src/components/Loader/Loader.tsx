@@ -11,7 +11,7 @@ const Loader = ({ isFullScreen = false }: Props) => {
 
   return (
     <Center sx={{ h: '100vh' }}>
-      <Spinner color="pink.500" sx={{ w: 100, h: 100 }} speed=".6s" thickness="4px" />
+      <Spinner color="teal.500" sx={{ w: 100, h: 100 }} speed=".6s" thickness="4px" />
     </Center>
   );
 };

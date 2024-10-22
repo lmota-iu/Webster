@@ -1,5 +1,22 @@
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Heading, Menu, MenuButton, MenuList, Spacer, HStack, Text, VStack } from '@chakra-ui/react';
+import { GrUserSettings } from 'react-icons/gr';
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Menu,
+  MenuButton,
+  MenuList,
+  Spacer,
+  HStack,
+  Text,
+  VStack,
+  MenuItem,
+  Icon,
+  Divider,
+  // Image,
+} from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { LOGO_FONT } from '~/consts/components';
@@ -35,8 +52,12 @@ function Navbar() {
     dispatch(logout());
   };
 
+  // Flex color: bgGradient="linear(to-r, white, #6298ae)"
   return (
-    <Flex bgGradient="linear(to-r, pink.500, purple.500)" py="2" align="center" id="navbar">
+    <Flex bg={'#6298ae'} py="2" align="center" id="navbar">
+      {/* <Box w={'30px'} h={'30px'} p="2">
+        <Image src="/LOGOTIPO_SEM_MARGENS.svg" alt="Logo ACE - Imagem Urbana" />
+      </Box> */}
       <Box>
         <Heading
           fontSize="28px"
@@ -47,7 +68,7 @@ function Navbar() {
           mb="0"
           fontFamily={LOGO_FONT}
         >
-          Webster
+          ACE
         </Heading>
       </Box>
       <Spacer />
@@ -64,6 +85,7 @@ function Navbar() {
                 </Text>
               )}
             </Box>
+            {/* -------CANVAS ACTIONS------- */}
             <Box>
               <Menu>
                 <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
@@ -78,9 +100,26 @@ function Navbar() {
                 </MenuList>
               </Menu>
             </Box>
-            <Button colorScheme="gray" mr="4" onClick={handleLogout}>
-              Logout
-            </Button>
+            {/* -------USER ACTIONS------- */}
+            <Box>
+              <Menu>
+                <MenuButton
+                  color={'white'}
+                  _hover={{ bg: 'none' }}
+                  as={Button}
+                  rightIcon={<ChevronDownIcon />}
+                  variant="ghost"
+                >
+                  {/* <Avatar bgColor="white" color={'black'} size="xs" name={user?.username} />{' '} */}
+                  <Icon color="white" boxSize={5} as={GrUserSettings} />
+                </MenuButton>
+                <MenuList>
+                  <MenuItem>Profile</MenuItem>
+                  <Divider />
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
           </>
         ) : (
           <Button colorScheme="gray" mr="4" as={Link} to="/auth/sign-in">

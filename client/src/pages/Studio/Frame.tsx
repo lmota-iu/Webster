@@ -14,12 +14,16 @@ import useObjectSelect from '~/hooks/use-object-select';
 import { loadGoogleFontsDefaultVariants } from '~/utils/load-google-fonts-default-variants';
 import useHotkeySetup from '~/hooks/use-hotkey-setup';
 import useStageResize from '~/hooks/use-stage-resize';
+import { setSize } from '~/store/slices/frame-slice';
+import { useDispatch } from 'react-redux';
 
 type IProps = {
   stageRef: React.RefObject<Konva.Stage> | null;
 };
 
 const Frame = ({ stageRef }: IProps) => {
+  const dispatch = useDispatch();
+
   const { stageObjects, resetAll, replaceAll } = useStageObject();
   const { transformer: imageTransformer, onTransformerEnd: onImageTransformerEnd } = useTransformer({ stageRef });
   const { transformer: textTransformer, onTransformerEnd: onTextTransformerEnd } = useTransformer({ stageRef });
@@ -32,7 +36,8 @@ const Frame = ({ stageRef }: IProps) => {
   useHotkeySetup(transformers);
 
   const { width, height, scale, stage } = useAppSelector((state) => state.frame);
-  const { boxWidth, boxHeight, handleZoom, handleDragMoveStage } = useStageResize({ stageRef });
+  // const { boxWidth, boxHeight, handleZoom, handleDragMoveStage } = useStageResize({ stageRef });
+  const { handleZoom, handleDragMoveStage } = useStageResize({ stageRef });
 
   useEffect(() => {
     const fontsToLoad = stageObjects
@@ -57,6 +62,20 @@ const Frame = ({ stageRef }: IProps) => {
 
     replaceAll(content as StageObject[]);
   }, [stage.id, stage.content]);
+
+  // resize stage
+  useEffect(() => {
+    const parentElem: HTMLElement | null = document.querySelector('#frame-container');
+    if (parentElem) {
+      console.log('resize', parentElem.offsetWidth, parentElem.offsetHeight);
+      dispatch(
+        setSize({
+          width: parentElem.offsetWidth,
+          height: parentElem.offsetHeight,
+        }),
+      );
+    }
+  }, []);
 
   const checkDeselect = (e: KonvaEventObject<MouseEvent> | KonvaEventObject<TouchEvent>) => {
     const clickedOnEmpty = e.target === e.target.getStage();
@@ -92,7 +111,7 @@ const Frame = ({ stageRef }: IProps) => {
   };
 
   return (
-    <Box overflow="hidden" maxW={boxWidth} maxH={boxHeight}>
+    <Box overflow="hidden" maxW={width} maxH={height}>
       <Stage
         width={width * scale}
         height={height * scale}

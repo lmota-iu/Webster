@@ -65,7 +65,7 @@ const Images = () => {
         <SearchForm setSearch={setQuery} setQueryReset={setQueryReset} />
         <Text>
           View more on{' '}
-          <Link isExternal color="pink.500" as={RouterLink} to={UNSPLASH_URL}>
+          <Link isExternal color="teal.500" as={RouterLink} to={UNSPLASH_URL}>
             Unsplash
           </Link>
         </Text>

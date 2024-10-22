@@ -88,7 +88,7 @@ export default function SignUp() {
         <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
           <HStack spacing="1" justify="center">
             <Text color="muted">Already have an account?</Text>
-            <Link as={RouterLink} color={'pink.500'} to="/auth/sign-in">
+            <Link as={RouterLink} color={'teal.500'} to="/auth/sign-in">
               Sign In
             </Link>
           </HStack>
@@ -106,12 +106,12 @@ export default function SignUp() {
           <Stack spacing={3} mb="20px">
             <FormControl id="username" isRequired isInvalid={errors.username && touchedFields.username}>
               <FormLabel>Username</FormLabel>
-              <Input type="text" focusBorderColor="pink.500" {...register('username')} />
+              <Input type="text" focusBorderColor="teal.500" {...register('username')} />
               <FormErrorMessage>{errors.username && errors.username.message}</FormErrorMessage>
             </FormControl>
             <FormControl id="email" isRequired isInvalid={errors.email && touchedFields.email}>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" focusBorderColor="pink.500" {...register('email')} />
+              <Input type="email" focusBorderColor="teal.500" {...register('email')} />
               <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
             </FormControl>
             <FormControl isInvalid={errors.password && touchedFields.password}>
@@ -119,7 +119,7 @@ export default function SignUp() {
               <InputGroup>
                 <Input
                   type={showPassword ? 'text' : 'password'}
-                  focusBorderColor="pink.500"
+                  focusBorderColor="teal.500"
                   {...register('password')}
                 />
                 <InputRightElement h={'full'}>
@@ -139,7 +139,7 @@ export default function SignUp() {
               <InputGroup>
                 <Input
                   type={showPassword ? 'text' : 'password'}
-                  focusBorderColor="pink.500"
+                  focusBorderColor="teal.500"
                   {...register('passwordConfirm')}
                 />
                 <InputRightElement h={'full'}>
@@ -156,7 +156,7 @@ export default function SignUp() {
             </FormControl>
           </Stack>
           <Stack spacing={10} pt={2}>
-            <Button isDisabled={!isValid || isSubmitting} type="submit" loadingText="Submitting" colorScheme="pink">
+            <Button isDisabled={!isValid || isSubmitting} type="submit" loadingText="Submitting" colorScheme="teal">
               Sign up
             </Button>
           </Stack>

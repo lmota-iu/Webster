@@ -6,6 +6,7 @@ import Navbar from './Navbar/Navbar';
 import Toolbar from './Toolbar';
 import EditingToolbar from './EditingToolbar/EditingToolbar';
 import { NAVBAR_HEIGHT, EDITING_TOOLBAR_HEIGHT, FRAME_CONTAINER_PADDING } from '~/consts/components';
+import CADToolbar from './CADToolbar/CADToolbar';
 
 const Studio = () => {
   const stageRef = React.useRef<Konva.Stage>(null);
@@ -33,15 +34,17 @@ const Studio = () => {
       <Flex h={`calc(100vh - ${navbarHeight}px)`} w="100%">
         <Toolbar stageRef={stageRef} />
 
-        <Box flexGrow="1">
+        <Box flexGrow="1" ml={'53'}>
           <EditingToolbar />
           <Center
+            id="frame-container"
             h={`calc(100vh - ${navbarHeight}px - ${editingToolbarHeight}px)`}
             bgColor="gray.200"
             padding={`${FRAME_CONTAINER_PADDING}px`}
           >
             <Frame stageRef={stageRef} />
           </Center>
+          <CADToolbar stageRef={stageRef} />
         </Box>
       </Flex>
     </Box>

@@ -38,7 +38,7 @@ const CustomNumberInput = ({ min, max, step, value, pattern = /^\d$/, mark, labe
         </NumberInput>
       </Flex>
       <Slider
-        colorScheme="pink"
+        colorScheme="teal"
         focusThumbOnChange={false}
         min={min}
         max={max}

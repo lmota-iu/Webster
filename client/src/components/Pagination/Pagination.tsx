@@ -29,7 +29,7 @@ const Pagination = ({ pagesCount, page, setPage }: IProps) => {
                 bg: 'hover',
                 color: 'text',
               }}
-              bg={index == page ? 'pink.500' : 'gray.400'}
+              bg={index == page ? 'teal.500' : 'gray.400'}
               color="white"
               fontWeight="600"
               onClick={() => {
@@ -42,9 +42,9 @@ const Pagination = ({ pagesCount, page, setPage }: IProps) => {
         } else {
           return (
             <Flex key={index} align="flex-end" h="20px">
-              <Circle bg="pink.500" size="3px" marginLeft="7px" />
-              <Circle bg="pink.500" size="3px" marginLeft="7px" />
-              <Circle bg="pink.500" size="3px" marginLeft="7px" />
+              <Circle bg="teal.500" size="3px" marginLeft="7px" />
+              <Circle bg="teal.500" size="3px" marginLeft="7px" />
+              <Circle bg="teal.500" size="3px" marginLeft="7px" />
             </Flex>
           );
         }

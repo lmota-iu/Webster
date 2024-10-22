@@ -3,8 +3,15 @@ export interface ILoginPayload {
   password: string;
 }
 
+export interface IUser {
+  email: string;
+  username: string;
+  isEmailConfirmed: boolean;
+}
+
 export interface ILoginResponse {
   accessToken: string;
+  user: IUser;
 }
 
 export interface IRegisterPayload {

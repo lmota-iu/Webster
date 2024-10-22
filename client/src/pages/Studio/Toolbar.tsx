@@ -1,6 +1,6 @@
 import { Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import Konva from 'konva';
-import { TOOLBAR_TABS } from '~/consts/components';
+import { TOOLBAR_TABS, NAVBAR_HEIGHT } from '~/consts/components';
 import Export from './tools/Export';
 import ImageUpload from './tools/ImageUpload/ImageUpload';
 import Images from './tools/Images/Images';
@@ -8,20 +8,38 @@ import Resize from './tools/Resize';
 import Shapes from './tools/Shapes/Shapes';
 import Texts from './tools/Text/Texts';
 import HotkeysList from './tools/Hotkeys/Hotkeys';
+import { useEffect, useState } from 'react';
 
 type Props = {
   stageRef: React.RefObject<Konva.Stage>;
 };
 
 const Toolbar = ({ stageRef }: Props) => {
+  const [selectedTab, setSelectedTab] = useState<number>(-1);
+  const [displayPanels, setDisplayPanels] = useState<boolean>(false);
+
+  useEffect(() => {
+    setDisplayPanels(selectedTab < 0);
+  }, [selectedTab]);
+
   return (
-    <Flex h="100%" borderRight="2px" borderColor="gray.200">
+    <Flex
+      h="100%"
+      borderRight="2px"
+      borderColor="gray.200"
+      position={'absolute'}
+      top={`${NAVBAR_HEIGHT}px`}
+      left="0"
+      w="53px"
+      zIndex={10}
+    >
       <Tabs
+        defaultIndex={-1}
         isLazy
         lazyBehavior="keepMounted"
         orientation="vertical"
         variant="line"
-        colorScheme="pink"
+        colorScheme="teal"
         h="100%"
         id="toolbar"
         bgColor="gray.100"
@@ -39,16 +57,17 @@ const Toolbar = ({ stageRef }: Props) => {
               justifyContent="center"
               fontSize="12px"
               fontWeight="600"
-              _selected={{ bgColor: 'white', color: 'pink.500' }}
-              _hover={{ color: 'pink.500' }}
+              _selected={{ bgColor: 'white', color: 'teal.500' }}
+              _hover={{ color: 'teal.500' }}
+              onClick={() => setSelectedTab(selectedTab === i ? -1 : i)}
             >
-              <Icon as={t.icon} boxSize={6} />
-              {t.title}
+              <Icon as={t.icon} boxSize={5} />
+              {/* {t.title} */}
             </Tab>
           ))}
         </TabList>
 
-        <TabPanels minW="350px" maxW="350px" bgColor="white" overflowY="auto">
+        <TabPanels display={displayPanels ? 'none' : 'flex'} minW="350px" maxW="350px" bgColor="white" overflowY="auto">
           <TabPanel>
             <Resize />
           </TabPanel>

@@ -36,7 +36,7 @@ const SearchForm = ({ onSubmit, onReset, placeholder }: Props) => {
             <Input
               id="query"
               variant="filled"
-              focusBorderColor="pink.500"
+              focusBorderColor="teal.500"
               placeholder={placeholder}
               {...register('query')}
             />
