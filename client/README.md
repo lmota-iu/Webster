@@ -1,23 +1,4 @@
-<head>
-    <div align="center">
-        <h1 align="center">Webster (Client)</h1>
-    </div>
-</head>
-
-<div align="center">
-  <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white" />
-  <img alt="Vite" src="https://img.shields.io/badge/-Vite-646CFF.svg?style=for-the-badge&logo=Vite&logoColor=white" />
-  <img alt="react" src="https://img.shields.io/badge/-React-61DAFB.svg?style=for-the-badge&logo=react&logoColor=black" />
-  <img alt="redux" src="https://img.shields.io/badge/-Redux-764ABC.svg?style=for-the-badge&logo=redux&logoColor=white" />
-  <img alt="react router" src="https://img.shields.io/badge/-React%20Router-CA4245.svg?style=for-the-badge&logo=react-router&logoColor=white" />
-  <img alt="Chakra UI" src="https://img.shields.io/badge/-Chakra%20UI-319795.svg?style=for-the-badge&logo=ChakraUI&logoColor=white" />
-  <img alt="konva" src="https://img.shields.io/badge/-konva-0D83CD.svg?style=for-the-badge&logo=konva&logoColor=white" />
-  <img alt="unsplash" src="https://img.shields.io/badge/-unsplash%20API-000000.svg?style=for-the-badge&logo=unsplash&logoColor=white" />
-  <img alt="google fonts" src="https://img.shields.io/badge/-Google%20Fonts%20API-4285F4.svg?style=for-the-badge&logo=Google-Fonts&logoColor=white" />
-  <img alt="Progressive Web Apps" src="https://img.shields.io/badge/Progressive%20Web%20Apps-5A0FC8.svg?style=for-the-badge&logo=pwa&logoColor=white" />
-</div>
-
-</br>
+# Client
 
 ## About
 
